@@ -30,7 +30,7 @@
     [super viewDidLoad];
     
     _fullNameLabel.text = [NSString stringWithFormat:@"%@ %@", _detailPerson.firstName, _detailPerson.lastName];
-    _pictureOfPerson = _detailPerson.personPicture;
+    _pictureOfPerson.image = _detailPerson.personPicture;
     
     
     // Do any additional setup after loading the view.

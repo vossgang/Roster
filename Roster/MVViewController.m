@@ -51,11 +51,10 @@
         Person *thisPerson = [Person new];
         thisPerson.firstName = [_studentFirstNameArray objectAtIndex:i];
         thisPerson.lastName = [_studentLastNameArray objectAtIndex:i];
-        thisPerson.personPicture.image = [UIImage imageNamed:@"addTime"];
         
         UIImage *image = [UIImage new];
         image = [UIImage imageNamed:@"addTime"];
-        thisPerson.personPicture.image = image;
+        thisPerson.personPicture = image;
 
         
         [group addObject:thisPerson];
@@ -79,7 +78,7 @@
             NSLog(@"nope");
         }
         
-        thisPerson.personPicture.image = image;
+        thisPerson.personPicture = image;
         
         [group addObject:thisPerson];
     }
@@ -103,7 +102,7 @@
     }
     
     cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", thisPerson.firstName, thisPerson.lastName];
-    cell.personPicture.image = thisPerson.personPicture.image;
+    cell.personPicture.image = thisPerson.personPicture;
     
     
     return cell;
@@ -144,7 +143,7 @@
         
         PersonDetailViewController *destVC = segue.destinationViewController;
         
-        destVC.title = thisPerson.firstName;
+        destVC.title = [NSString stringWithFormat:@"%@ %@", thisPerson.firstName, thisPerson.lastName];
         
         destVC.detailPerson = thisPerson;
         
@@ -155,6 +154,14 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section) {
+        return @"Teachers";
+    }
+    return @"Students";
 }
 
 
