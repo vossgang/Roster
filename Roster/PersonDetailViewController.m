@@ -60,6 +60,17 @@
     imagePicker.delegate = self;
     imagePicker.allowsEditing = YES;
     
+    
+    
+    if ([ALAssetsLibrary authorizationStatus] == (ALAuthorizationStatusDenied || ALAuthorizationStatusRestricted)){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Photo Library access"
+                                                            message:@"Acceses to Photo Library is not active, please go to setting to allow access"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"ok"
+                                                  otherButtonTitles: nil];
+        [alertView show];
+    }
+    
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Take Photo"]) {
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Choose Photo"]) {
@@ -86,7 +97,7 @@
         
         ALAssetsLibrary  *assestsLibrary = [ALAssetsLibrary new];
         
-        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized || ALAuthorizationStatusNotDetermined) {
+        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized) {
             
             [assestsLibrary writeImageToSavedPhotosAlbum:orginalImage.CGImage
                                              orientation:ALAssetOrientationUp

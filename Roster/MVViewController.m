@@ -111,7 +111,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    if (section) {
+    if (section == student) {
         return _students.count;
     }
     
@@ -131,7 +131,7 @@
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     Person *thisPerson = [Person new];
 
-    if (path.section) {
+    if (path.section == student) {
         thisPerson = _students[path.row];
     } else {
         thisPerson = _teachers[path.row];
@@ -151,7 +151,7 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section) {
+    if (section == student) {
         return @"Students";
     }
     return @"Teachers";
