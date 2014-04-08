@@ -178,26 +178,17 @@
 -(void)sortArrayByFirstName
 {
     NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
-    NSArray *sortDescriptors = @[sorter];
-    NSArray *sortedArray = [_students sortedArrayUsingDescriptors:sortDescriptors];
-    _students = [sortedArray mutableCopy];
-    
-    sortedArray = [_teachers sortedArrayUsingDescriptors:sortDescriptors];
-    _teachers = [sortedArray mutableCopy];
+    _students= [[_students sortedArrayUsingDescriptors:@[sorter]] mutableCopy];
+    _teachers = [[_teachers sortedArrayUsingDescriptors:@[sorter]] mutableCopy];
     [_tableView reloadData];
 }
 
 -(void)sortArrayByLastName
 {
     NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
-    NSArray *sortDescriptors = @[sorter];
-    NSArray *sortedArray = [_students sortedArrayUsingDescriptors:sortDescriptors];
-    _students = [sortedArray mutableCopy];
-    
-    sortedArray = [_teachers sortedArrayUsingDescriptors:sortDescriptors];
-    _teachers = [sortedArray mutableCopy];
-    [_tableView reloadData];
-}
+    _students= [[_students sortedArrayUsingDescriptors:@[sorter]] mutableCopy];
+    _teachers = [[_teachers sortedArrayUsingDescriptors:@[sorter]] mutableCopy];
+    [_tableView reloadData];}
 
 @end
 

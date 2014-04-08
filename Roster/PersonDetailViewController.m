@@ -30,19 +30,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Do any additional setup after loading the view.
     
     _fullNameLabel.text = _detailPerson.fullName;
     _pictureOfPerson.image = _detailPerson.personPicture;
-    
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         _actionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", @"Take Photo", nil];
         } else {
             _actionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", nil];
     }
-    
-    
-    // Do any additional setup after loading the view.
 }
 - (IBAction)choosePhoto:(id)sender {
     [self.actionSheet showInView:self.view];
@@ -90,32 +87,34 @@
     
     UIImage *orginalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    [self dismissViewControllerAnimated:YES completion:^{
+    
+        [self dismissViewControllerAnimated:YES completion:^{
+            if (picker.sourceType != UIImagePickerControllerSourceTypePhotoLibrary) {
+
+            ALAssetsLibrary  *assestsLibrary = [ALAssetsLibrary new];
         
-        ALAssetsLibrary  *assestsLibrary = [ALAssetsLibrary new];
-        
-        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized) {
+            if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized) {
             
-            [assestsLibrary writeImageToSavedPhotosAlbum:orginalImage.CGImage
-                                             orientation:ALAssetOrientationUp
-                                         completionBlock:^(NSURL *assetURL, NSError *error) {
-                                             if (error) {
-                                                 NSLog(@"Error %@", error.localizedDescription);
-                                             }
-                                         }];
-        } else if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied || ALAuthorizationStatusRestricted){
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Save Photo"
-                                                                message:@"Acceses to Photo Library is not active, please go to setting to allow access"
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"ok"
-                                                      otherButtonTitles: nil];
-            [alertView show];
+                [assestsLibrary writeImageToSavedPhotosAlbum:orginalImage.CGImage
+                                                 orientation:ALAssetOrientationUp
+                                             completionBlock:^(NSURL *assetURL, NSError *error) {
+                                                 if (error) {
+                                                     NSLog(@"Error %@", error.localizedDescription);
+                                                 }
+                                             }];
+            } else if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied || ALAuthorizationStatusRestricted){
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Save Photo"
+                                                                    message:@"Acceses to Photo Library is not active, please go to setting to allow access"
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"ok"
+                                                          otherButtonTitles: nil];
+                [alertView show];
             
-        } else {
-            //notdetermined
-        }
-        
-    }];
+            } else {
+                //notdetermined
+            }
+            }
+        }];
     
 }
 
