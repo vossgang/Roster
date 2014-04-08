@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSString *firstName;
 @property (nonatomic, strong) NSString *lastName;
+@property (nonatomic, strong) NSString *fullName;
 @property (nonatomic, strong) UIImage *personPicture;
 
 @end

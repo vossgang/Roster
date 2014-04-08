@@ -15,11 +15,13 @@
 
 @property (nonatomic, strong) NSMutableArray *students;
 @property (nonatomic, strong) NSMutableArray *teachers;
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+
 @property (nonatomic, strong) NSArray *studentFirstNameArray;
 @property (nonatomic, strong) NSArray *studentLastNameArray;
 @property (nonatomic, strong) NSArray *teacherFirstNameArray;
 @property (nonatomic, strong) NSArray *teacherLastNameArray;
+
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end
 
@@ -36,7 +38,7 @@
     _studentLastNameArray = @[@"Babiy", @"Bratcher", @"Fairbanks", @"Lee", @"Mcneil", @"Potter", @"Radebaugh", @"Rivera", @"Sweeney", @"Tulman", @"Cohen", @"Voss"];
     
     _teacherFirstNameArray = @[@"John", @"Brad"];
-    _teacherLastNameArray = @[@"Clem", @"Johnson"];
+    _teacherLastNameArray  = @[@"Clem", @"Johnson"];
     
     [self populatStudentArray];
     [self populateTeacherArray];
@@ -49,14 +51,11 @@
     
     for (int i = 0; i < _studentFirstNameArray.count; i++) {
         Person *thisPerson = [Person new];
-        thisPerson.firstName = [_studentFirstNameArray objectAtIndex:i];
-        thisPerson.lastName = [_studentLastNameArray objectAtIndex:i];
+        thisPerson.firstName = _studentFirstNameArray[i];
+        thisPerson.lastName = _studentLastNameArray[i];
         
-        UIImage *image = [UIImage new];
-        image = [UIImage imageNamed:@"addTime"];
-        thisPerson.personPicture = image;
+        thisPerson.personPicture = [UIImage imageNamed:@"addTime"];
 
-        
         [group addObject:thisPerson];
     }
     
@@ -68,13 +67,10 @@
     NSMutableArray *group = [NSMutableArray new];
     for (int i = 0; i < _teacherFirstNameArray.count; i++) {
         Person *thisPerson = [Person new];
-        thisPerson.firstName = [_teacherFirstNameArray objectAtIndex:i];
-        thisPerson.lastName = [_teacherLastNameArray objectAtIndex:i];
+        thisPerson.firstName = _teacherFirstNameArray[i];
+        thisPerson.lastName = _teacherLastNameArray[i];
         
-        UIImage *image = [[UIImage alloc] init];
-        image = [UIImage imageNamed:@"LivingCell"];
-        
-        thisPerson.personPicture = image;
+        thisPerson.personPicture = [UIImage imageNamed:@"LivingCell.PNG"];
         
         [group addObject:thisPerson];
     }
@@ -88,17 +84,14 @@
     PersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     Person *thisPerson = [Person new];
 
-    
     if (indexPath.section) {
-        thisPerson = [_students objectAtIndex:indexPath.row];
+        thisPerson = _students[indexPath.row];
     } else {
-        thisPerson = [_teachers objectAtIndex:indexPath.row];
-
+        thisPerson = _teachers[indexPath.row];
     }
-    
-    cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", thisPerson.firstName, thisPerson.lastName];
+        
+    cell.nameLabel.text = thisPerson.fullName;
     cell.personPicture.image = thisPerson.personPicture;
-    
     
     return cell;
     
@@ -127,24 +120,17 @@
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     Person *thisPerson = [Person new];
 
-    
     if (path.section) {
-        thisPerson = [_students objectAtIndex:path.row];
+        thisPerson = _students[path.row];
     } else {
-        thisPerson = [_teachers objectAtIndex:path.row];
-
+        thisPerson = _teachers[path.row];
     }
     
     if ([segue.identifier isEqualToString:@"showPersonSegue"]) {
-        
         PersonDetailViewController *destVC = segue.destinationViewController;
-        
-        destVC.title = [NSString stringWithFormat:@"%@ %@", thisPerson.firstName, thisPerson.lastName];
-        
+        destVC.title = thisPerson.fullName;
         destVC.detailPerson = thisPerson;
-        
     }
-    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

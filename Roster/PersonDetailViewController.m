@@ -7,10 +7,12 @@
 //
 
 #import "PersonDetailViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
-@interface PersonDetailViewController ()
+@interface PersonDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *fullNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *pictureOfPerson;
+@property (nonatomic, strong) UIActionSheet *actionSheet;
 
 @end
 
@@ -29,11 +31,21 @@
 {
     [super viewDidLoad];
     
-    _fullNameLabel.text = [NSString stringWithFormat:@"%@ %@", _detailPerson.firstName, _detailPerson.lastName];
+    _fullNameLabel.text = _detailPerson.fullName;
     _pictureOfPerson.image = _detailPerson.personPicture;
     
     
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        _actionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", @"Take Photo", nil];
+        } else {
+            _actionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", nil];
+    }
+    
+    
     // Do any additional setup after loading the view.
+}
+- (IBAction)choosePhoto:(id)sender {
+    [self.actionSheet showInView:self.view];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,6 +53,70 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Take Photo"]) {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Choose Photo"]) {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    } else {
+        return;
+    }
+    
+    [self presentViewController:imagePicker animated:YES completion:^{
+        
+    }];
+}
+
+
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+
+    _pictureOfPerson.image = [info objectForKey:UIImagePickerControllerEditedImage];
+    
+    UIImage *orginalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+        ALAssetsLibrary  *assestsLibrary = [ALAssetsLibrary new];
+        
+        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized || ALAuthorizationStatusNotDetermined) {
+            
+            [assestsLibrary writeImageToSavedPhotosAlbum:orginalImage.CGImage
+                                             orientation:ALAssetOrientationUp
+                                         completionBlock:^(NSURL *assetURL, NSError *error) {
+                                             if (error) {
+                                                 NSLog(@"Error %@", error.localizedDescription);
+                                             }
+                                         }];
+            
+        } else if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied || ALAuthorizationStatusRestricted){
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Save Photo"
+                                                                message:@"NO Authorized acceses"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"ok"
+                                                      otherButtonTitles: nil];
+            [alertView show];
+            
+        } else {
+            //notdetermined
+        }
+        
+    }];
+    
+    
+}
+
+
+
+
 
 /*
 #pragma mark - Navigation

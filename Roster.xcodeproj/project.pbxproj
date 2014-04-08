@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9065A7518F470C10013BACE /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9065A7418F470C10013BACE /* AssetsLibrary.framework */; };
 		C92D572C18F324E300678914 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92D572B18F324E300678914 /* Foundation.framework */; };
 		C92D572E18F324E300678914 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92D572D18F324E300678914 /* CoreGraphics.framework */; };
 		C92D573018F324E300678914 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92D572F18F324E300678914 /* UIKit.framework */; };
@@ -25,7 +26,6 @@
 		C9D37E0518F338FE00107717 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D37E0418F338FE00107717 /* Person.m */; };
 		C9D37E0818F33EE100107717 /* PersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D37E0718F33EE100107717 /* PersonDetailViewController.m */; };
 		C9D37E0A18F3428700107717 /* LivingCell.PNG in Resources */ = {isa = PBXBuildFile; fileRef = C9D37E0918F3428700107717 /* LivingCell.PNG */; };
-		C9D37E0C18F3447200107717 /* IMG_3048.PNG in Resources */ = {isa = PBXBuildFile; fileRef = C9D37E0B18F3447200107717 /* IMG_3048.PNG */; };
 		C9D37E0E18F3501200107717 /* addTime.png in Resources */ = {isa = PBXBuildFile; fileRef = C9D37E0D18F3501200107717 /* addTime.png */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C9065A7418F470C10013BACE /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C92D572818F324E300678914 /* Roster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Roster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C92D572B18F324E300678914 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C92D572D18F324E300678914 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -66,7 +67,6 @@
 		C9D37E0618F33EE100107717 /* PersonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDetailViewController.h; sourceTree = "<group>"; };
 		C9D37E0718F33EE100107717 /* PersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDetailViewController.m; sourceTree = "<group>"; };
 		C9D37E0918F3428700107717 /* LivingCell.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LivingCell.PNG; sourceTree = "<group>"; };
-		C9D37E0B18F3447200107717 /* IMG_3048.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IMG_3048.PNG; sourceTree = "<group>"; };
 		C9D37E0D18F3501200107717 /* addTime.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addTime.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9065A7518F470C10013BACE /* AssetsLibrary.framework in Frameworks */,
 				C92D572E18F324E300678914 /* CoreGraphics.framework in Frameworks */,
 				C92D573018F324E300678914 /* UIKit.framework in Frameworks */,
 				C92D572C18F324E300678914 /* Foundation.framework in Frameworks */,
@@ -116,6 +117,7 @@
 		C92D572A18F324E300678914 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9065A7418F470C10013BACE /* AssetsLibrary.framework */,
 				C92D572B18F324E300678914 /* Foundation.framework */,
 				C92D572D18F324E300678914 /* CoreGraphics.framework */,
 				C92D572F18F324E300678914 /* UIKit.framework */,
@@ -139,7 +141,6 @@
 				C92D576018F3289200678914 /* PersonTableViewCell.h */,
 				C92D576118F3289200678914 /* PersonTableViewCell.m */,
 				C92D574318F324E300678914 /* Images.xcassets */,
-				C9D37E0B18F3447200107717 /* IMG_3048.PNG */,
 				C9D37E0D18F3501200107717 /* addTime.png */,
 				C9D37E0918F3428700107717 /* LivingCell.PNG */,
 				C92D573218F324E300678914 /* Supporting Files */,
@@ -256,7 +257,6 @@
 				C92D574418F324E300678914 /* Images.xcassets in Resources */,
 				C92D573618F324E300678914 /* InfoPlist.strings in Resources */,
 				C9D37E0E18F3501200107717 /* addTime.png in Resources */,
-				C9D37E0C18F3447200107717 /* IMG_3048.PNG in Resources */,
 				C9D37E0A18F3428700107717 /* LivingCell.PNG in Resources */,
 				C92D573F18F324E300678914 /* Main.storyboard in Resources */,
 			);
