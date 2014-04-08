@@ -83,8 +83,6 @@
     }];
 }
 
-
-
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 
@@ -119,12 +117,7 @@
         
     }];
     
-    
 }
-
-
-
-
 
 /*
 #pragma mark - Navigation

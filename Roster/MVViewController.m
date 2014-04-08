@@ -67,7 +67,7 @@
         thisPerson.firstName = _studentFirstNameArray[i];
         thisPerson.lastName = _studentLastNameArray[i];
         
-        thisPerson.personPicture = [UIImage imageNamed:@"addTime"];
+        thisPerson.personPicture = [UIImage imageNamed:@"happy.jpg"];
         thisPerson.personType = student;
 
         [group addObject:thisPerson];
@@ -112,12 +112,10 @@
     cell.personPicture.layer.masksToBounds = YES;
     
     return cell;
-    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
     if (section == student) {
         return _students.count;
     }
@@ -130,8 +128,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -163,15 +159,14 @@
     }
     return @"Teachers";
 }
-- (IBAction)sortCells:(id)sender {
-    
-    [self.actionSheet showInView:self.view];
 
-    
+- (IBAction)sortCells:(id)sender
+{
+        [self.actionSheet showInView:self.view];
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"First Name"]) {
         [self sortArrayByFirstName];
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Last Name"]) {
@@ -182,7 +177,6 @@
 
 -(void)sortArrayByFirstName
 {
-    
     NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
     NSArray *sortDescriptors = @[sorter];
     NSArray *sortedArray = [_students sortedArrayUsingDescriptors:sortDescriptors];
@@ -195,7 +189,6 @@
 
 -(void)sortArrayByLastName
 {
-    
     NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
     NSArray *sortDescriptors = @[sorter];
     NSArray *sortedArray = [_students sortedArrayUsingDescriptors:sortDescriptors];
@@ -233,5 +226,4 @@
  Ryo Tulman
 
  Matthew Voss
-
 */
