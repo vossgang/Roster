@@ -72,11 +72,7 @@
         thisPerson.lastName = [_teacherLastNameArray objectAtIndex:i];
         
         UIImage *image = [[UIImage alloc] init];
-        image = [UIImage imageNamed:@"IMG_3048"];
-        
-        if (!image) {
-            NSLog(@"nope");
-        }
+        image = [UIImage imageNamed:@"LivingCell"];
         
         thisPerson.personPicture = image;
         
@@ -94,11 +90,10 @@
 
     
     if (indexPath.section) {
-        //teachStuff
-        thisPerson = [_teachers objectAtIndex:indexPath.row];
-    } else {
-        //studentStuff
         thisPerson = [_students objectAtIndex:indexPath.row];
+    } else {
+        thisPerson = [_teachers objectAtIndex:indexPath.row];
+
     }
     
     cell.nameLabel.text = [NSString stringWithFormat:@"%@ %@", thisPerson.firstName, thisPerson.lastName];
@@ -113,10 +108,10 @@
 {
     
     if (section) {
-        return _teachers.count;
+        return _students.count;
     }
     
-    return _students.count;
+    return _teachers.count;
 }
 
 - (void)didReceiveMemoryWarning
@@ -134,9 +129,10 @@
 
     
     if (path.section) {
-        thisPerson = [_teachers objectAtIndex:path.row];
-    } else {
         thisPerson = [_students objectAtIndex:path.row];
+    } else {
+        thisPerson = [_teachers objectAtIndex:path.row];
+
     }
     
     if ([segue.identifier isEqualToString:@"showPersonSegue"]) {
@@ -159,9 +155,9 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section) {
-        return @"Teachers";
+        return @"Students";
     }
-    return @"Students";
+    return @"Teachers";
 }
 
 
