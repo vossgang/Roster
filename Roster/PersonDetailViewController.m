@@ -60,21 +60,20 @@
     imagePicker.delegate = self;
     imagePicker.allowsEditing = YES;
     
-    
-    
-    if ([ALAssetsLibrary authorizationStatus] == (ALAuthorizationStatusDenied || ALAuthorizationStatusRestricted)){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Photo Library access"
-                                                            message:@"Acceses to Photo Library is not active, please go to setting to allow access"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"ok"
-                                                  otherButtonTitles: nil];
-        [alertView show];
-    }
-    
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Take Photo"]) {
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Choose Photo"]) {
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        
+        if ([ALAssetsLibrary authorizationStatus] == (ALAuthorizationStatusDenied || ALAuthorizationStatusRestricted)){
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"No Photo Library access"
+                                                                message:@"Acceses to Photo Library is not active, please go to setting to allow access"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"ok"
+                                                      otherButtonTitles: nil];
+            [alertView show];
+        }
+        
     } else {
         return;
     }
@@ -106,7 +105,6 @@
                                                  NSLog(@"Error %@", error.localizedDescription);
                                              }
                                          }];
-//no possible way to hit this code...? since we just finished picking an image we know we have access to images
         } else if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied || ALAuthorizationStatusRestricted){
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Save Photo"
                                                                 message:@"Acceses to Photo Library is not active, please go to setting to allow access"

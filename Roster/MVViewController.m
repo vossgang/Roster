@@ -11,7 +11,7 @@
 #import "Person.h"
 #import "PersonDetailViewController.h"
 
-@interface MVViewController () <UITabBarControllerDelegate, UITableViewDataSource>
+@interface MVViewController () <UITabBarControllerDelegate, UITableViewDataSource, UIActionSheetDelegate>
 
 @property (nonatomic, strong) NSMutableArray *students;
 @property (nonatomic, strong) NSMutableArray *teachers;
@@ -22,6 +22,8 @@
 @property (nonatomic, strong) NSArray *teacherLastNameArray;
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) UIActionSheet *actionSheet;
 
 @end
 
@@ -39,6 +41,9 @@
     
     _teacherFirstNameArray = @[@"John", @"Brad"];
     _teacherLastNameArray  = @[@"Clem", @"Johnson"];
+    
+    _actionSheet = [[UIActionSheet alloc] initWithTitle:@"Sort Cells by" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"First Name", @"Last Name", nil];
+
     
     [self populatStudentArray];
     [self populateTeacherArray];
@@ -103,6 +108,8 @@
         
     cell.nameLabel.text = thisPerson.fullName;
     cell.personPicture.image = thisPerson.personPicture;
+    cell.personPicture.layer.cornerRadius = cell.personPicture.frame.size.width / 3;
+    cell.personPicture.layer.masksToBounds = YES;
     
     return cell;
     
@@ -156,6 +163,75 @@
     }
     return @"Teachers";
 }
+- (IBAction)sortCells:(id)sender {
+    
+    [self.actionSheet showInView:self.view];
 
+    
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"First Name"]) {
+        [self sortArrayByFirstName];
+    } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Last Name"]) {
+        [self sortArrayByLastName];
+    }
+}
+
+
+-(void)sortArrayByFirstName
+{
+    
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES];
+    NSArray *sortDescriptors = @[sorter];
+    NSArray *sortedArray = [_students sortedArrayUsingDescriptors:sortDescriptors];
+    _students = [sortedArray mutableCopy];
+    
+    sortedArray = [_teachers sortedArrayUsingDescriptors:sortDescriptors];
+    _teachers = [sortedArray mutableCopy];
+    [_tableView reloadData];
+}
+
+-(void)sortArrayByLastName
+{
+    
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES];
+    NSArray *sortDescriptors = @[sorter];
+    NSArray *sortedArray = [_students sortedArrayUsingDescriptors:sortDescriptors];
+    _students = [sortedArray mutableCopy];
+    
+    sortedArray = [_teachers sortedArrayUsingDescriptors:sortDescriptors];
+    _teachers = [sortedArray mutableCopy];
+    [_tableView reloadData];
+}
 
 @end
+
+
+/*
+ Michael Babiy
+
+ Cole Bratcher
+
+ Christopher Cohan
+
+ Dan Fairbanks
+
+ Lauren Lee
+
+ Sean Mcneil
+
+ Taylor Potter
+
+ Brian Radebaugh
+
+ Anton Rivera
+
+ Reed Sweeney
+
+ Ryo Tulman
+
+ Matthew Voss
+
+*/
