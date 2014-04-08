@@ -78,7 +78,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
 
-    _pictureOfPerson.image = [info objectForKey:UIImagePickerControllerEditedImage];
+    _pictureOfPerson.image = _detailPerson.personPicture = [info objectForKey:UIImagePickerControllerEditedImage];
     
     UIImage *orginalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     
@@ -95,11 +95,10 @@
                                                  NSLog(@"Error %@", error.localizedDescription);
                                              }
                                          }];
-            
+//no possible way to hit this code...? since we just finished picking an image we know we have access to images
         } else if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied || ALAuthorizationStatusRestricted){
-            
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Save Photo"
-                                                                message:@"NO Authorized acceses"
+                                                                message:@"Acceses to Photo Library is not active, please go to setting to allow access"
                                                                delegate:nil
                                                       cancelButtonTitle:@"ok"
                                                       otherButtonTitles: nil];

@@ -45,16 +45,25 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [_tableView reloadData];
+}
+
 -(void)populatStudentArray
 {
     NSMutableArray *group = [NSMutableArray new];
     
     for (int i = 0; i < _studentFirstNameArray.count; i++) {
         Person *thisPerson = [Person new];
+        
+        //this returns an array [thisPerson.fullName componentsSeparatedByString:@" "];
+        
         thisPerson.firstName = _studentFirstNameArray[i];
         thisPerson.lastName = _studentLastNameArray[i];
         
         thisPerson.personPicture = [UIImage imageNamed:@"addTime"];
+        thisPerson.personType = student;
 
         [group addObject:thisPerson];
     }
@@ -69,6 +78,8 @@
         Person *thisPerson = [Person new];
         thisPerson.firstName = _teacherFirstNameArray[i];
         thisPerson.lastName = _teacherLastNameArray[i];
+        
+        thisPerson.personType = teacher;
         
         thisPerson.personPicture = [UIImage imageNamed:@"LivingCell.PNG"];
         
