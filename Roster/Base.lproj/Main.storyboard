@@ -65,6 +65,11 @@
                                 <action selector="sortCells:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mOi-U5-Btr"/>
                             </connections>
                         </button>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="adS-kU-Hdj">
+                            <connections>
+                                <segue destination="nsn-gr-23B" kind="push" identifier="addPerson" id="rBG-s2-FJD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="FOE-vK-t9j" id="U1C-BR-hOy"/>
@@ -72,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="639" y="59"/>
+            <point key="canvasLocation" x="639" y="54"/>
         </scene>
         <!--Person Detail View Controller-->
         <scene sceneID="OpH-eK-MJx">
@@ -86,12 +91,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6k-pl-KYf">
-                                <rect key="frame" x="40" y="106" width="240" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lBN-DR-AXG">
                                 <rect key="frame" x="40" y="164" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -110,26 +109,54 @@
                                     <action selector="choosePhoto:" destination="nsn-gr-23B" eventType="touchUpInside" id="gYF-Ej-oB9"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="First" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="1me-LX-wVm">
+                                <rect key="frame" x="40" y="94" width="115" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Last" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fsh-5E-Vwi">
+                                <rect key="frame" x="165" y="94" width="115" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QSn-2R-qId">
+                                <rect key="frame" x="136" y="412" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Teacher / Student" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6A-U8-u2q">
+                                <rect key="frame" x="92" y="451" width="136" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="lBN-DR-AXG" secondAttribute="trailing" constant="40" id="74b-Ny-uvC"/>
-                            <constraint firstItem="lBN-DR-AXG" firstAttribute="top" secondItem="b6k-pl-KYf" secondAttribute="bottom" constant="37" id="7pd-2F-CZa"/>
                             <constraint firstItem="lBN-DR-AXG" firstAttribute="centerY" secondItem="mUT-qP-xpA" secondAttribute="centerY" id="Y0H-x3-Kk6"/>
-                            <constraint firstItem="lBN-DR-AXG" firstAttribute="leading" secondItem="b6k-pl-KYf" secondAttribute="leading" id="aOS-KI-cQV"/>
-                            <constraint firstItem="lBN-DR-AXG" firstAttribute="trailing" secondItem="b6k-pl-KYf" secondAttribute="trailing" id="o25-OZ-DT3"/>
                             <constraint firstItem="lBN-DR-AXG" firstAttribute="leading" secondItem="mUT-qP-xpA" secondAttribute="leading" constant="40" id="wbj-UJ-yij"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="1h9-e6-mUY"/>
+                    <navigationItem key="navigationItem" id="1h9-e6-mUY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="6Sb-ft-rzy">
+                            <connections>
+                                <action selector="deleteCurrentPerson:" destination="nsn-gr-23B" id="j1j-iF-PZd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="fullNameLabel" destination="b6k-pl-KYf" id="DE0-fF-lC3"/>
+                        <outlet property="PersontypeSwitch" destination="QSn-2R-qId" id="4me-vV-zWw"/>
+                        <outlet property="firstNameLabel" destination="1me-LX-wVm" id="BUn-7I-rQ3"/>
+                        <outlet property="lastNameLabel" destination="fsh-5E-Vwi" id="2aw-h9-eMB"/>
                         <outlet property="pictureOfPerson" destination="lBN-DR-AXG" id="VvK-v7-VrZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15d-8y-aoq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1095" y="66"/>
+            <point key="canvasLocation" x="1051" y="54"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ge1-yw-JOn">
@@ -155,4 +182,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="rBG-s2-FJD"/>
+    </inferredMetricsTieBreakers>
 </document>

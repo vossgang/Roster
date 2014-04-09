@@ -8,9 +8,13 @@
 
 #import "PersonDetailViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "TabelDataSorceController.h"
 
-@interface PersonDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *fullNameLabel;
+@interface PersonDetailViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *lastNameLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *PersontypeSwitch;
+
+@property (weak, nonatomic) IBOutlet UITextField *firstNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *pictureOfPerson;
 @property (nonatomic, strong) UIActionSheet *actionSheet;
 
@@ -32,7 +36,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _fullNameLabel.text = _detailPerson.fullName;
+    _lastNameLabel.delegate = self;
+    _firstNameLabel.delegate = self;
+    
+    _firstNameLabel.text = _detailPerson.firstName;
+    _lastNameLabel.text = _detailPerson.lastName;
+    [_PersontypeSwitch setOn:_detailPerson.personType];
     _pictureOfPerson.image = _detailPerson.personPicture;
     
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -41,6 +50,15 @@
             _actionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", nil];
     }
 }
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    _detailPerson.firstName = _firstNameLabel.text;
+    _detailPerson.lastName  = _lastNameLabel.text;
+    _detailPerson.personType = _PersontypeSwitch.isOn;
+}
+
 - (IBAction)choosePhoto:(id)sender {
     [self.actionSheet showInView:self.view];
 }
@@ -117,6 +135,25 @@
         }];
     
 }
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    
+    self.title  = [NSString stringWithFormat:@"%@ %@", _firstNameLabel.text, _lastNameLabel.text];
+    
+    return YES;
+}
+
+- (IBAction)deleteCurrentPerson:(id)sender
+{
+    _firstNameLabel.text = @"DELETE";
+    _lastNameLabel.text  = @"ME";
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
 
 /*
 #pragma mark - Navigation

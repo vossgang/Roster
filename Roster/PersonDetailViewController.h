@@ -11,6 +11,6 @@
 
 @interface PersonDetailViewController : UIViewController
 
-@property (nonatomic, strong) Person *detailPerson;
+@property (nonatomic, weak) Person *detailPerson;
 
 @end
