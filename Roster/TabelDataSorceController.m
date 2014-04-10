@@ -132,6 +132,8 @@
     cell.personPicture.layer.cornerRadius = cell.personPicture.frame.size.width / 3;
     cell.personPicture.layer.masksToBounds = YES;
     
+    cell.clipsToBounds = YES;
+    
     return cell;
 }
 
