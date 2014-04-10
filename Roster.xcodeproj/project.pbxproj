@@ -23,8 +23,8 @@
 		C92D575518F324E300678914 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C92D575318F324E300678914 /* InfoPlist.strings */; };
 		C92D575718F324E300678914 /* RosterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C92D575618F324E300678914 /* RosterTests.m */; };
 		C92D576218F3289200678914 /* PersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C92D576118F3289200678914 /* PersonTableViewCell.m */; };
-		C9780FF118F5FA680037BF56 /* save.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9780FF018F5FA680037BF56 /* save.plist */; };
 		C996A51D18F4ACD4001F2276 /* happy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C996A51C18F4ACD4001F2276 /* happy.jpg */; };
+		C9A6C49918F6375200E930E7 /* save.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9A6C49818F6375200E930E7 /* save.plist */; };
 		C9CD7D3B18F5A76400FD1F37 /* TabelDataSorceController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CD7D3A18F5A76400FD1F37 /* TabelDataSorceController.m */; };
 		C9D37E0518F338FE00107717 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D37E0418F338FE00107717 /* Person.m */; };
 		C9D37E0818F33EE100107717 /* PersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D37E0718F33EE100107717 /* PersonDetailViewController.m */; };
@@ -65,8 +65,8 @@
 		C92D575618F324E300678914 /* RosterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RosterTests.m; sourceTree = "<group>"; };
 		C92D576018F3289200678914 /* PersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTableViewCell.h; sourceTree = "<group>"; };
 		C92D576118F3289200678914 /* PersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTableViewCell.m; sourceTree = "<group>"; };
-		C9780FF018F5FA680037BF56 /* save.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = save.plist; sourceTree = "<group>"; };
 		C996A51C18F4ACD4001F2276 /* happy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = happy.jpg; sourceTree = "<group>"; };
+		C9A6C49818F6375200E930E7 /* save.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = save.plist; sourceTree = "<group>"; };
 		C9CD7D3918F5A76400FD1F37 /* TabelDataSorceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabelDataSorceController.h; sourceTree = "<group>"; };
 		C9CD7D3A18F5A76400FD1F37 /* TabelDataSorceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabelDataSorceController.m; sourceTree = "<group>"; };
 		C9D37E0318F338FE00107717 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
@@ -145,11 +145,11 @@
 				C92D574118F324E300678914 /* MVViewController.m */,
 				C9CD7D3918F5A76400FD1F37 /* TabelDataSorceController.h */,
 				C9CD7D3A18F5A76400FD1F37 /* TabelDataSorceController.m */,
-				C9780FF018F5FA680037BF56 /* save.plist */,
 				C9D37E0618F33EE100107717 /* PersonDetailViewController.h */,
 				C9D37E0718F33EE100107717 /* PersonDetailViewController.m */,
 				C92D576018F3289200678914 /* PersonTableViewCell.h */,
 				C92D576118F3289200678914 /* PersonTableViewCell.m */,
+				C9A6C49818F6375200E930E7 /* save.plist */,
 				C92D574318F324E300678914 /* Images.xcassets */,
 				C9D37E0D18F3501200107717 /* addTime.png */,
 				C996A51C18F4ACD4001F2276 /* happy.jpg */,
@@ -268,8 +268,8 @@
 				C92D574418F324E300678914 /* Images.xcassets in Resources */,
 				C92D573618F324E300678914 /* InfoPlist.strings in Resources */,
 				C996A51D18F4ACD4001F2276 /* happy.jpg in Resources */,
-				C9780FF118F5FA680037BF56 /* save.plist in Resources */,
 				C9D37E0E18F3501200107717 /* addTime.png in Resources */,
+				C9A6C49918F6375200E930E7 /* save.plist in Resources */,
 				C9D37E0A18F3428700107717 /* LivingCell.PNG in Resources */,
 				C92D573F18F324E300678914 /* Main.storyboard in Resources */,
 			);

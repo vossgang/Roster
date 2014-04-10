@@ -23,11 +23,10 @@
         
         self.firstName = [aDecoder decodeObjectForKey:@"firstName"];
         self.lastName = [aDecoder decodeObjectForKey:@"lastName"];
-        self.personPicture = [UIImage imageWithData:[aDecoder decodeObjectForKey:@"picture"]];
         self.personType = [aDecoder decodeIntegerForKey:@"peopleType"];
+        self.picturePath = [aDecoder decodeObjectForKey:@"picturePath"];
+        self.personPicture     = [UIImage imageWithContentsOfFile:self.picturePath];
     }
-    
-    
     
     return self;
 }
@@ -36,8 +35,13 @@
 {
     [aCoder encodeObject:self.firstName forKey:@"firstName"];
     [aCoder encodeObject:self.lastName forKey:@"lastName"];
-    [aCoder encodeObject:UIImagePNGRepresentation(self.personPicture) forKey:@"picture"];
     [aCoder encodeInteger:self.personType forKey:@"peopleType"];
+    
+    self.picturePath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:_firstName] stringByAppendingString:_lastName];
+    
+    NSData *imageData = UIImageJPEGRepresentation(self.personPicture, .5);
+    [imageData writeToFile:self.picturePath atomically:YES];
+    [aCoder encodeObject:self.picturePath forKey:@"picturePath"];
     
 }
 
