@@ -78,7 +78,12 @@
             thisPerson.personType = student;
             [_myDataSorce.allPeople  addObject:thisPerson];
             
-            destVC.title = thisPerson.fullName;
+            if (thisPerson.firstName && thisPerson.lastName) {
+                destVC.title = thisPerson.fullName;
+            } else {
+                destVC.title = @"New Person";
+            }
+            
             destVC.detailPerson = thisPerson;
         }
     

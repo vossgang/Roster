@@ -69,11 +69,10 @@
     
     for (Person *person in _allPeople) {
         if (![person.fullName isEqualToString:@"DELETE ME"]) {
+            [self checkRandomPathFor:person];
             if (person.personType == teacher) {
-                [self checkRandomPathFor:person];
                 [teachers addObject:person];
             } else if (person.personType == student){
-                [self checkRandomPathFor:person];
                 [students addObject:person];
             }
             
@@ -118,9 +117,18 @@
     } else {
         thisPerson = _teachers[indexPath.row];
     }
+    if (thisPerson.userBlueColor || thisPerson.userGreenColor || thisPerson.userRedColor) {
+        cell.backgroundColor = thisPerson.userBGColor;
+    } else {
+        cell.backgroundColor = [UIColor whiteColor];
+    }
     
     cell.nameLabel.text = thisPerson.fullName;
-    cell.personPicture.image = thisPerson.personPicture;
+    if (thisPerson.personPicture) {
+        cell.personPicture.image = thisPerson.personPicture;
+    } else {
+        cell.personPicture.image = [UIImage imageNamed:@"default.jpg"];
+    }
     cell.personPicture.layer.cornerRadius = cell.personPicture.frame.size.width / 3;
     cell.personPicture.layer.masksToBounds = YES;
     
@@ -185,7 +193,6 @@
     }
     
     _allPeople = myArray;
-
     
 }
 

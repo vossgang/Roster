@@ -25,6 +25,7 @@
 		C92D575718F324E300678914 /* RosterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C92D575618F324E300678914 /* RosterTests.m */; };
 		C92D576218F3289200678914 /* PersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C92D576118F3289200678914 /* PersonTableViewCell.m */; };
 		C996A51D18F4ACD4001F2276 /* happy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C996A51C18F4ACD4001F2276 /* happy.jpg */; };
+		C9C9456D18F754C800969585 /* default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C9C9456C18F754C800969585 /* default.jpg */; };
 		C9CD7D3B18F5A76400FD1F37 /* TabelDataSorceController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9CD7D3A18F5A76400FD1F37 /* TabelDataSorceController.m */; };
 		C9D37E0518F338FE00107717 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D37E0418F338FE00107717 /* Person.m */; };
 		C9D37E0818F33EE100107717 /* PersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9D37E0718F33EE100107717 /* PersonDetailViewController.m */; };
@@ -67,6 +68,7 @@
 		C92D576018F3289200678914 /* PersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTableViewCell.h; sourceTree = "<group>"; };
 		C92D576118F3289200678914 /* PersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTableViewCell.m; sourceTree = "<group>"; };
 		C996A51C18F4ACD4001F2276 /* happy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = happy.jpg; sourceTree = "<group>"; };
+		C9C9456C18F754C800969585 /* default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default.jpg; sourceTree = "<group>"; };
 		C9CD7D3918F5A76400FD1F37 /* TabelDataSorceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabelDataSorceController.h; sourceTree = "<group>"; };
 		C9CD7D3A18F5A76400FD1F37 /* TabelDataSorceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabelDataSorceController.m; sourceTree = "<group>"; };
 		C9D37E0318F338FE00107717 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				C9D37E0718F33EE100107717 /* PersonDetailViewController.m */,
 				C92D576018F3289200678914 /* PersonTableViewCell.h */,
 				C92D576118F3289200678914 /* PersonTableViewCell.m */,
+				C9C9456C18F754C800969585 /* default.jpg */,
 				C9028B3B18F64DD90044547C /* save.plist */,
 				C92D574318F324E300678914 /* Images.xcassets */,
 				C9D37E0D18F3501200107717 /* addTime.png */,
@@ -272,6 +275,7 @@
 				C9028B3C18F64DD90044547C /* save.plist in Resources */,
 				C9D37E0A18F3428700107717 /* LivingCell.PNG in Resources */,
 				C92D573F18F324E300678914 /* Main.storyboard in Resources */,
+				C9C9456D18F754C800969585 /* default.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
