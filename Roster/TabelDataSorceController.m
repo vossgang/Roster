@@ -45,10 +45,7 @@
     char newChar;
     
     int i = ((arc4random() % 26) + 65);
-    
     newChar = i;
-    
-    NSLog(@"%c", newChar);
     
     return newChar;
 }
