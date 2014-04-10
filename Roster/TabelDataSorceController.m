@@ -40,6 +40,29 @@
 
 }
 
+-(char)randChar
+{
+    char newChar;
+    
+    int i = ((arc4random() % 26) + 65);
+    
+    newChar = i;
+    
+    NSLog(@"%c", newChar);
+    
+    return newChar;
+}
+
+-(void)checkRandomPathFor:(Person *)person
+{
+    if (!person.randomPicturePathExtension) {
+        NSString *randomSting = @"a";
+        for (int i = 0; i < 16; i++) {
+           randomSting = [NSString stringWithFormat:@"%@%c", randomSting, [self randChar]];
+        }
+        person.randomPicturePathExtension = randomSting;
+    }
+}
 
 -(void)populateArrays
 {
@@ -50,16 +73,19 @@
     for (Person *person in _allPeople) {
         if (![person.fullName isEqualToString:@"DELETE ME"]) {
             if (person.personType == teacher) {
+                [self checkRandomPathFor:person];
                 [teachers addObject:person];
             } else if (person.personType == student){
+                [self checkRandomPathFor:person];
                 [students addObject:person];
             }
+            
         } else {
             NSFileManager *fileManager = [NSFileManager defaultManager];
             NSError *error = NULL;
             [fileManager removeItemAtPath:person.picturePath error:&error];
             if (error) {
-                 NSLog(@"Could not delete file -:%@ ",[error localizedDescription]);
+                 NSLog(@"Could not delete picture -:%@ ",[error localizedDescription]);
             }
         }
     }

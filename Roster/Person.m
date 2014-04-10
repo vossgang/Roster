@@ -24,6 +24,7 @@
         self.firstName = [aDecoder decodeObjectForKey:@"firstName"];
         self.lastName = [aDecoder decodeObjectForKey:@"lastName"];
         self.personType = [aDecoder decodeIntegerForKey:@"peopleType"];
+        self.randomPicturePathExtension = [aDecoder decodeObjectForKey:@"randomPicturePathExtension"];
         self.picturePath = [aDecoder decodeObjectForKey:@"picturePath"];
         self.personPicture     = [UIImage imageWithContentsOfFile:self.picturePath];
     }
@@ -36,8 +37,9 @@
     [aCoder encodeObject:self.firstName forKey:@"firstName"];
     [aCoder encodeObject:self.lastName forKey:@"lastName"];
     [aCoder encodeInteger:self.personType forKey:@"peopleType"];
+    [aCoder encodeObject:self.randomPicturePathExtension forKey:@"randomPicturePathExtension"];
     
-    self.picturePath = [[[NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:_firstName] stringByAppendingString:_lastName];
+    self.picturePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentationDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:_randomPicturePathExtension];
     
     NSData *imageData = UIImageJPEGRepresentation(self.personPicture, .5);
     [imageData writeToFile:self.picturePath atomically:YES];

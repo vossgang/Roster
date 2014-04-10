@@ -20,6 +20,7 @@ enum personType {
 @property (nonatomic, strong) NSString *fullName;
 @property (nonatomic, strong) UIImage *personPicture;
 
+@property (nonatomic, strong) NSString *randomPicturePathExtension;
 @property (nonatomic, strong) NSString *picturePath;
 
 @property (nonatomic) NSInteger personType;
