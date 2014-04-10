@@ -54,12 +54,20 @@
             } else if (person.personType == student){
                 [students addObject:person];
             }
+        } else {
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            NSError *error = NULL;
+            [fileManager removeItemAtPath:person.picturePath error:&error];
+            if (error) {
+                 NSLog(@"Could not delete file -:%@ ",[error localizedDescription]);
+            }
         }
     }
     _students = students;
     _teachers = teachers;
     [all addObjectsFromArray:_teachers];
     [all addObjectsFromArray:_students];
+    _allPeople = all;
 }
 
 
