@@ -95,7 +95,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return personTypeCount;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -228,5 +228,27 @@
     }
     return [myManager fileExistsAtPath:pathForPlistInDocs];
 }
+
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+ 
+    Person *thisPerson = [Person new];
+
+    if (indexPath.section) {
+        thisPerson = _students[indexPath.row];
+    } else {
+        thisPerson = _teachers[indexPath.row];
+    }
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        thisPerson.firstName = @"DELETE";
+        thisPerson.lastName = @"ME";
+        [self populateArrays];
+        [tableView reloadData];
+    }
+    
+}
+
 
 @end

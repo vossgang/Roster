@@ -12,7 +12,8 @@
 
 enum personType {
     teacher,
-    student
+    student,
+    personTypeCount
 };
 
 @property (nonatomic, strong) NSString *firstName;

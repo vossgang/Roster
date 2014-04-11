@@ -33,14 +33,6 @@
 
 @implementation PersonDetailViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 - (IBAction)changePersonType:(id)sender
 {
     
@@ -66,6 +58,13 @@
     _firstNameLabel.delegate = self;
     _githubLabel.delegate = self;
     _twitterLabel.delegate = self;
+    
+    
+    _firstNameLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.8];
+    _lastNameLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.8];
+    _githubLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.8];
+    _twitterLabel.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.8];
+    
     
     if (_detailPerson.firstName) {
         _firstNameLabel.text = _detailPerson.firstName;
@@ -109,11 +108,6 @@
     _pictureOfPerson.layer.cornerRadius = _pictureOfPerson.frame.size.width / 3;
     _pictureOfPerson.layer.masksToBounds = YES;
     
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        _actionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", @"Take Photo", nil];
-        } else {
-            _actionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", nil];
-    }
 }
 
 
@@ -125,7 +119,14 @@
     _detailPerson.githubUserName = _githubLabel.text;
 }
 
-- (IBAction)choosePhoto:(id)sender {
+- (IBAction)choosePhoto:(id)sender
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        _actionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", @"Take Photo", nil];
+    } else {
+        _actionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", nil];
+    }
+    
     [self.actionSheet showInView:self.view];
 }
 
@@ -211,7 +212,7 @@
     
     self.title  = [NSString stringWithFormat:@"%@ %@", _firstNameLabel.text, _lastNameLabel.text];
     
-    return NO;
+    return YES;
 }
 
 - (IBAction)deleteCurrentPerson:(id)sender
@@ -223,13 +224,13 @@
     
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    self.title  = [NSString stringWithFormat:@"%@ %@", _firstNameLabel.text, _lastNameLabel.text];
-    
-    [self.topView endEditing:YES];
-    
-}
+//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    self.title  = [NSString stringWithFormat:@"%@ %@", _firstNameLabel.text, _lastNameLabel.text];
+//    
+//    [self.topView endEditing:YES];
+//    
+//}
 
 -(IBAction)sharePhoto:(id)sender
 {
@@ -266,6 +267,17 @@
 {
     for (UITextField *text in self.topView.subviews) {
         [self textFieldShouldReturn:text];
+    }
+    
+   CGPoint tapPoint = [gestureRecognizer locationInView:_topView];
+    
+    if (CGRectContainsPoint(_pictureOfPerson.frame, tapPoint) && (!CGRectContainsPoint(_githubLabel.frame, tapPoint)) && (!CGRectContainsPoint(_firstNameLabel.frame, tapPoint)) && (!CGRectContainsPoint(_lastNameLabel.frame, tapPoint)) && (!CGRectContainsPoint(_twitterLabel.frame, tapPoint))) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            _actionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", @"Take Photo", nil];
+        } else {
+            _actionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", nil];
+        }
+        [self.actionSheet showInView:self.view];
     }
     
     return YES;
